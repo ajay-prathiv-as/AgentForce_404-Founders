@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TestSmith</title>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark">
+
+  <!-- Application Header -->
+  <header class="app-header">
+    <h1>TestSmith</h1>
+    <div class="theme-switcher">
+      <label>
+        <input type="checkbox" id="themeToggle" />
+        <span><i class="fa-solid fa-sun"></i> Light / Dark</span>
+      </label>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Left Panel -->
+    <section class="left-panel" id="leftPanel">
+      <h2><i class="fa-solid fa-upload"></i> Upload or Paste Code</h2>
+
+      <!-- Drag & Drop Zone -->
+      <div id="dropZone" class="drop-zone">
+        <p>Drag & Drop files here or click below to select</p>
+        <input type="file" id="fileInput" accept=".txt,.py,.java,.js,.cpp,.c,.cs,.rb,.php,.html,.css,.json,.md,image/*" />
+      </div>
+
+      <!-- File Preview -->
+      <div id="filePreview" class="file-preview"></div>
+
+      <!-- Recent Files -->
+      <div class="recent-files">
+        <h3>Recent Files</h3>
+        <ul id="recentFilesList"></ul>
+      </div>
+
+      <!-- Code Textarea -->
+      <textarea id="codeArea" placeholder="Paste your code here..."></textarea>
+
+      <!-- Auto-detect Language -->
+      <div class="auto-lang-detect">
+        <button id="detectLangBtn"><i class="fa-solid fa-magic"></i> Auto Detect Language</button>
+        <span id="detectedLang" class="detected-lang"></span>
+      </div>
+    </section>
+
+    <!-- Right Panel -->
+    <section class="right-panel" id="rightPanel">
+      <h2><i class="fa-solid fa-gears"></i> Generate Test Cases</h2>
+
+      <label for="languageSelect">Select Programming Language:</label>
+      <select id="languageSelect" aria-label="Select programming language">
+        <option value="">-- Select Language --</option>
+        <option>Python</option>
+        <option>Java</option>
+        <option>JavaScript</option>
+        <option>C</option>
+        <option>C++</option>
+        <option>C#</option>
+        <option>Go</option>
+        <option>PHP</option>
+        <option>Ruby</option>
+        <option>Swift</option>
+        <option>Kotlin</option>
+        <option>Rust</option>
+        <option>TypeScript</option>
+      </select>
+
+      <div class="buttons-row">
+        <button id="generateBtn"><i class="fa-solid fa-play"></i> Generate</button>
+        <button id="beautifyBtn" title="Beautify Output"><i class="fa-solid fa-brush"></i></button>
+        <button id="minifyBtn" title="Minify Output"><i class="fa-solid fa-compress"></i></button>
+        <button id="bugCheckBtn" title="Bug Check"><i class="fa-solid fa-bug"></i></button>
+        <button id="copyBtn" title="Copy Output"><i class="fa-solid fa-copy"></i></button>
+        <button id="downloadZipBtn" title="Download as ZIP"><i class="fa-solid fa-file-zipper"></i></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Output Section with Tabs -->
+  <section class="output-section">
+    <h2><i class="fa-solid fa-code"></i> Generated Test Cases</h2>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="htmlTab">HTML Output</button>
+      <button class="tab-btn" data-tab="cssTab">CSS Output</button>
+      <button class="tab-btn" data-tab="jsTab">JS Output</button>
+      <button class="tab-btn" data-tab="testcaseTab">Test Case Results</button>
+    </div>
+
+    <div class="tab-content active" id="htmlTab">
+      <pre><code id="htmlOutput" class="language-html">// HTML output will appear here...</code></pre>
+    </div>
+    <div class="tab-content" id="cssTab">
+      <pre><code id="cssOutput" class="language-css">// CSS output will appear here...</code></pre>
+    </div>
+    <div class="tab-content" id="jsTab">
+      <pre><code id="jsOutput" class="language-js">// JS output will appear here...</code></pre>
+    </div>
+    <div class="tab-content" id="testcaseTab">
+      <button id="runTestcasesBtn" class="run-btn"><i class="fa-solid fa-play-circle"></i> Run Testcases</button>
+      <iframe id="testcaseIframe" title="JS Testcase Runner"></iframe>
+      <pre id="testcaseLog" class="testcase-log"></pre>
+    </div>
+  </section>
+
+  <!-- Prism.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+
+  <!-- JSZip for ZIP downloads -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script src="main.js"></script>
+</body>
+</html>
